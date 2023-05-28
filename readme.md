@@ -10,5 +10,6 @@
 * Search `toolkit.legacyUserProfileCustomizations.stylesheets`
 * Change it to `true`
 * Execute the script `./script.sh`
+* Make sure you don't have any spaces on your image name
 
 #### Thanks you for using my script
