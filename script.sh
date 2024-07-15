@@ -15,7 +15,7 @@ fi
 
 cd "$default_folder"
 mkdir -p chrome/img
-mv "$file" chrome/img/
+cp "$file" chrome/img/
 cd chrome
 touch userContent.css
 echo "
