@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Find default folder in /home/<user>/snap/firefox/common/.mozilla/firefox/
-default_folder=$(find /home/*/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d -name '*.default' -print -quit)
+#default_folder=$(find /home/*/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d -name '*.default' -print -quit)
+default_folder=/home/firas/.mozilla/firefox/6boasi62.default-release
 echo $default_folder
 # Using Zenity to open a file chooser restricted to images
 file=$(zenity --file-selection --title="Select an image" --filename="$default_folder")
@@ -14,7 +15,22 @@ else
 fi
 
 cd "$default_folder"
-mkdir -p chrome/img
+if [ -d "chrome/img" ]; then
+
+	echo "folder already exists"
+else
+	mkdir -p chrome/img
+fi
+
+if [ chrome/img/*!=$file ]; then
+	read -p "another file is found as a wallpaper want to delete it?y/n(case sensitive)" response
+	if [ "$response" == "y" ]; then
+		rm chrome/img/*
+		echo removed
+	else
+		echo nothing done try removing the extra file if no wallpaper apperared 
+	fi
+fi
 cp "$file" chrome/img/
 cd chrome
 touch userContent.css
