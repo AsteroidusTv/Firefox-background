@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Find default folder in /home/<user>/snap/firefox/common/.mozilla/firefox/
-#default_folder=$(find /home/*/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d -name '*.default' -print -quit)
-default_folder=/home/firas/.mozilla/firefox/6boasi62.default-release
+default_folder=$(find /home/*/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d -name '*.default' -print -quit)
 echo $default_folder
 # Using Zenity to open a file chooser restricted to images
 file=$(zenity --file-selection --title="Select an image" --filename="$default_folder")
