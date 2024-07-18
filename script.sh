@@ -14,7 +14,22 @@ else
 fi
 
 cd "$default_folder"
-mkdir -p chrome/img
+if [ -d "chrome/img" ]; then
+
+	echo "folder already exists"
+else
+	mkdir -p chrome/img
+fi
+
+if [ chrome/img/*!=$file ]; then
+	read -p "another file is found as a wallpaper want to delete it?y/n(case sensitive)" response
+	if [ "$response" == "y" ]; then
+		rm chrome/img/*
+		echo removed
+	else
+		echo nothing done try removing the extra file if no wallpaper apperared 
+	fi
+fi
 cp "$file" chrome/img/
 cd chrome
 touch userContent.css
