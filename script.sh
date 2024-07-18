@@ -14,20 +14,25 @@ else
 fi
 
 cd "$default_folder"
-if [ -d "chrome/img" ]; then
 
-	echo "folder already exists"
+touch user.js 
+echo "
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", false);
+" > "./user.js"
+
+if [ -d "chrome/img" ]; then
+	echo "Folder already exists"
 else
 	mkdir -p chrome/img
 fi
 
 if [ chrome/img/*!=$file ]; then
-	read -p "another file is found as a wallpaper want to delete it?y/n(case sensitive)" response
+	read -p "Another file is found as a wallpaper want to delete it? y/n (case sensitive)" response
 	if [ "$response" == "y" ]; then
 		rm chrome/img/*
 		echo removed
 	else
-		echo nothing done try removing the extra file if no wallpaper apperared 
+		echo Nothing done try removing the extra file if no wallpaper apperared 
 	fi
 fi
 cp "$file" chrome/img/
