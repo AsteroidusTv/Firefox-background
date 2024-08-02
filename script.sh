@@ -2,15 +2,16 @@
 
 # Find default folder in /home/<user>/snap/firefox/common/.mozilla/firefox/
 default_folder=$(find /home/*/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d -name '*.default' -print -quit)
-echo $default_folder
+
 # Using Zenity to open a file chooser restricted to images
-file=$(zenity --file-selection --title="Select an image" --filename="$default_folder")
+file=$(zenity --file-selection --title="Select an image")
 
 # Checking if a file was selected or if the user canceled
 if [ -n "$file" ]; then
     echo "You have selected the image: $file"
 else
     echo "No image selected."
+    exit 1
 fi
 
 cd "$default_folder"
@@ -32,7 +33,7 @@ if [ chrome/img/*!=$file ]; then
 		rm chrome/img/*
 		echo removed
 	else
-		echo Nothing done try removing the extra file if no wallpaper apperared 
+		echo Nothing done try removing the extra file if no wallpaper apperared.
 	fi
 fi
 cp "$file" chrome/img/
@@ -56,3 +57,5 @@ body::before {
     height: 100vh ;
 }
 } " > "./userContent.css"
+
+echo "Done. Restart firefox and enjoy your wallpaper !"
