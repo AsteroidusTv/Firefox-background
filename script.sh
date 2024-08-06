@@ -18,7 +18,7 @@ cd "$default_folder"
 
 touch user.js 
 echo "
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", false);
+user_pref('toolkit.legacyUserProfileCustomizations.stylesheets', false);    
 " > "./user.js"
 
 if [ -d "chrome/img" ]; then
